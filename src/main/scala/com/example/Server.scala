@@ -28,20 +28,19 @@ object Server {
 class Hello extends Service[HttpRequest, HttpResponse] {
   def apply(request: HttpRequest): Future[HttpResponse] = {
     if (request.getUri.endsWith("/db")) {
-      showDatabase(request);
+      showDatabase(request)
     } else {
-      showHome(request);
+      showHome(request)
     }
   }
 
   def showHome(request: HttpRequest): Future[HttpResponse] = {
     val response = Response()
-    response.setStatusCode(200)
 
     RelativisticModel.select()
     val m = Amount.valueOf("12 GeV").to(KILOGRAM)
     response.setContentString("E=mc^2: 12 GeV = " + m)
-    
+
     Future(response)
   }
 
@@ -59,7 +58,6 @@ class Hello extends Service[HttpRequest, HttpResponse] {
     }
 
     val response = Response()
-    response.setStatusCode(200)
     response.setContentString(out)
     Future(response)
   }
