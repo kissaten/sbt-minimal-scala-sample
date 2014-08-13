@@ -23,15 +23,14 @@ object Server {
 class Hello extends Service[HttpRequest, HttpResponse] {
   def apply(request: HttpRequest): Future[HttpResponse] = {
     if (request.getUri.endsWith("/db")) {
-      showDatabase(request);
+      showDatabase(request)
     } else {
-      showHome(request);
+      showHome(request)
     }
   }
 
   def showHome(request: HttpRequest): Future[HttpResponse] = {
     val response = Response()
-    response.setStatusCode(200)
     response.setContentString("Hello from Scala!")
     Future(response)
   }
@@ -50,7 +49,6 @@ class Hello extends Service[HttpRequest, HttpResponse] {
     }
 
     val response = Response()
-    response.setStatusCode(200)
     response.setContentString(out)
     Future(response)
   }
