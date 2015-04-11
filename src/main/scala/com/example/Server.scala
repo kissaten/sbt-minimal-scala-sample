@@ -15,7 +15,7 @@ object Server {
     val port = Properties.envOrElse("PORT", "8080").toInt
     println("Starting on port: "+port)
 
-    val server = Http.serve(":" + port, new Hello)
+    val server = Http.serve(s":$port", new Hello)
     Await.ready(server)
   }
 }
